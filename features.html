@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Retrospective - Rent&Grooves</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>Rent&Grooves</h1>
+						<p>Our Features</p>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Content -->
+							<section id="content" class="main">
+								<span class="image main"><img src="images/guide-cover.png" alt="" height="600" /></span>
+								<div class="wrapper">
+									<i class="fa-solid fa-angle-left"></i>
+									<div class="carousel">
+										<img src="/images/Test_Image/Animals Lovers.jpg" alt="penguin">
+										<img src="/images/Test_Image/download.jpg" alt="scared_hamster">
+										<img src="/images/Test_Image/Important-Animals-Funny-Images.jpg" alt="flower">
+										<img src="/images/Test_Image/Küçük hamsterr _ Funny hamsters, Cute rats, Cute funny animals.jpg" alt="hi">
+										<img src="/images/Test_Image/This Photographer Takes Beautiful Close-Up Images Of Cold-Blooded Animals Minding Their Business (30 New Pics) in 2024 _ Cute animals puppies, Very cute dogs, Cute little animals.jpg" alt="penguin2">
+									</div>
+									<i class="fa-solid fa-angle-right"></i>
+								</div>
+                            </section>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>Behind Rent&Grooves</h2>
+							<dl class="alt">
+								<dt>Scott</dt>
+								<dd>Barrett</dd>
+								<dt>Edwin</dt>
+								<dd>Duong</dd>
+								<dt>Ethan</dt>
+								<dd>Lapkin</dd>
+								<dt>Harkeerat</dt>
+								<dd>Mayall</dd>
+								<dt>Cuong</dt>
+								<dd>Ta</dd>
+							</dl>
+						</section>
+						<section>
+							<h2>Link to our GitLab repository</h2>
+							<ul class="icons">
+								<li><a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12" class="icon brands fa-gitlab alt"><span class="label">Twitter</span></a></li>
+								COMP3350 W24 - TwelveGrooves-A02-12
+							</ul>
+							<ul class="actions">
+								<li><a href="index.html" class="button">RETURN TO HOME</a></li>
+							</ul>
+						</section>		
+						<!-- <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p> -->
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+
+	<script>
+		const carousel = document.querySelector(".carousel");
+
+		let isDragStart = false, prevPageX, prevScrollLeft;
+
+		const dragStart = (e) => {
+			// updating global variables value on mouse down event
+			isDragStart = true;
+			prevPageX = e.pageX;
+			prevScrollLeft = carousel.scrollLeft;
+		}
+
+		const dragging = (e) => {
+			// scrolling images/carousel to left according to mouse pointer
+			if(!isDragStart) return;
+			e.preventDefault();
+			let positionDiff = e.pageX - prevPageX;
+			carousel.scrollLeft = prevScrollLeft - positionDiff;
+		}
+
+		const dragStop = () => {
+			isDragStart = false;
+		}
+		carousel.addEventListener("mousemove", dragStart);
+		carousel.addEventListener("mousemove", dragging);
+		carousel.addEventListener("mousemove", dragStop);
+
+
+	</script>
+</html>
