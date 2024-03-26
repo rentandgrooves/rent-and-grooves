@@ -6,14 +6,13 @@
 -->
 <html>
 	<head>
-		<title>Retrospective - Rent&Grooves</title>
+		<title>Features - Rent&Grooves</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />	</head>
 	<body class="is-preload">
-
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -27,17 +26,50 @@
 					<div id="main">
 						<!-- Content -->
 							<section id="content" class="main">
-								<span class="image main"><img src="images/guide-cover.png" alt="" height="600" /></span>
+								<span class="image main">
+									<img src="images/R.jpg" alt="" height="700"/>
+								</span>
 								<div class="wrapper">
-									<i class="fa-solid fa-angle-left"></i>
+									<i id="left" class="fa-solid fa-angle-left"></i>
 									<div class="carousel">
-										<img src="/images/Test_Image/Animals Lovers.jpg" alt="penguin">
-										<img src="/images/Test_Image/download.jpg" alt="scared_hamster">
-										<img src="/images/Test_Image/Important-Animals-Funny-Images.jpg" alt="flower">
-										<img src="/images/Test_Image/Küçük hamsterr _ Funny hamsters, Cute rats, Cute funny animals.jpg" alt="hi">
-										<img src="/images/Test_Image/This Photographer Takes Beautiful Close-Up Images Of Cold-Blooded Animals Minding Their Business (30 New Pics) in 2024 _ Cute animals puppies, Very cute dogs, Cute little animals.jpg" alt="penguin2">
-									</div>
-									<i class="fa-solid fa-angle-right"></i>
+									  	<img src="images/images/img-1.jpg" alt="img" draggable="false">
+										<div class="description">
+											Ability to play and control music on the users’ device.
+										</div>
+									  	<img src="images/images/img-2.jpg" alt="img" draggable="false">
+										<div class="description">
+											Allow users to rent and store music offline so that they can listen to music when not connected to the network.
+										</div>
+									  	<img src="images/images/img-3.jpg" alt="img" draggable="false">
+										<div class="description">
+											Offer music to users to rent music and be able to add to their collection.										
+										</div>
+									  	<img src="images/images/img-4.jpg" alt="img" draggable="false">
+										<div class="description">
+											Offer a short preview of music in the catalog before they rent.										
+										</div>
+									  	<img src="images/images/img-5.jpg" alt="img" draggable="false">
+										  <div class="description">
+											Search the catalog of songs by different criteria.										
+										</div>
+										<img src="images/images/img-6.jpg" alt="img" draggable="false">
+										<div class="description">
+											Create a personal account to store rented and purchased music, as well as recommendations.										
+										</div>
+										<img src="images/images/img-7.jpg" alt="img" draggable="false">
+										<div class="description">
+											Recommend music to users based on their preferences.										
+										</div>
+										<img src="images/images/img-8.jpg" alt="img" draggable="false">
+										<div class="description">
+											Create and manage custom playlists										
+										</div>
+										<img src="images/images/img-9.jpg" alt="img" draggable="false">
+										<div class="description">
+											Option to buy music outright.										
+										</div>
+									<i id="right" class="fa-solid fa-angle-right"></i>
+								  </div>
 								</div>
                             </section>
 					</div>
@@ -85,14 +117,48 @@
 	</body>
 
 	<script>
-		const carousel = document.querySelector(".carousel");
+		const carousel = document.querySelector(".carousel"),
+		firstImg = carousel.querySelectorAll("img")[0],
+		arrowIcons = document.querySelectorAll(".wrapper i");
 
-		let isDragStart = false, prevPageX, prevScrollLeft;
+		let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+
+		const showHideIcons = () => {
+			// showing and hiding prev/next icon according to carousel scroll left value
+			let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
+			arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+			arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+		}
+
+		arrowIcons.forEach(icon => {
+			icon.addEventListener("click", () => {
+				let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+				// if clicked icon is left, reduce width value from the carousel scroll left else add to it
+				carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+				setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+			});
+		});
+
+		const autoSlide = () => {
+			// if there is no image left to scroll then return from here
+			if(carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
+
+			positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
+			let firstImgWidth = firstImg.clientWidth + 14;
+			// getting difference value that needs to add or reduce from carousel left to take middle img center
+			let valDifference = firstImgWidth - positionDiff;
+
+			if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
+				return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+			}
+			// if user is scrolling to the left
+			carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+		}
 
 		const dragStart = (e) => {
-			// updating global variables value on mouse down event
+			// updatating global variables value on mouse down event
 			isDragStart = true;
-			prevPageX = e.pageX;
+			prevPageX = e.pageX || e.touches[0].pageX;
 			prevScrollLeft = carousel.scrollLeft;
 		}
 
@@ -100,17 +166,30 @@
 			// scrolling images/carousel to left according to mouse pointer
 			if(!isDragStart) return;
 			e.preventDefault();
-			let positionDiff = e.pageX - prevPageX;
+			isDragging = true;
+			carousel.classList.add("dragging");
+			positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
 			carousel.scrollLeft = prevScrollLeft - positionDiff;
+			showHideIcons();
 		}
 
 		const dragStop = () => {
 			isDragStart = false;
-		}
-		carousel.addEventListener("mousemove", dragStart);
-		carousel.addEventListener("mousemove", dragging);
-		carousel.addEventListener("mousemove", dragStop);
+			carousel.classList.remove("dragging");
 
+			if(!isDragging) return;
+			isDragging = false;
+			autoSlide();
+		}
+
+		carousel.addEventListener("mousedown", dragStart);
+		carousel.addEventListener("touchstart", dragStart);
+
+		document.addEventListener("mousemove", dragging);
+		carousel.addEventListener("touchmove", dragging);
+
+		document.addEventListener("mouseup", dragStop);
+		carousel.addEventListener("touchend", dragStop);
 
 	</script>
 </html>
