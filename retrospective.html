@@ -31,7 +31,50 @@
 								<span class="image main"><img src="images/guide-cover.png" alt="" height="600" /></span>
                                 <h1>In this retrospective, we answer these questions:</h1>
 								<h2><I><B>I. How did the project change from your initial (iteration 0) vision or stories, or did it work out as predicted?</I></B></h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit egestas dui id ornare arcu. At risus viverra adipiscing at in tellus integer feugiat. Blandit volutpat maecenas volutpat blandit aliquam etiam erat. Morbi tristique senectus et netus et malesuada. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Ultricies mi quis hendrerit dolor magna eget est lorem. Elementum curabitur vitae nunc sed. At in tellus integer feugiat scelerisque varius. Duis at consectetur lorem donec massa sapien faucibus et molestie. Ut consequat semper viverra nam libero justo laoreet sit. Tincidunt vitae semper quis lectus nulla. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Sit amet porttitor eget dolor morbi non. In nisl nisi scelerisque eu ultrices vitae auctor. Cursus eget nunc scelerisque viverra mauris in aliquam sem. Diam quam nulla porttitor massa id neque aliquam. Nunc sed velit dignissim sodales ut eu sem integer.</p>
+								<p>The project worked out as expected, we finished most of the intended features in the beginning. 
+									We also added some more features to work on in later interations but realized we did not have enough time for them.</p>	
+
+								<p>During our meetings before the Iteration 1 release, we identified adjustments to our plans of what features we needed to complete before this release. 
+									We pushed 10 unbegun features as well as one feature that was partially complete and required more development and testing to iteration 2 
+									<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/milestones/2#tab-issues">(Iteration 2 Milestone)</a> 
+									as our time estimates for some features (we laid down before iteration 0) weren’t accurate. The partially complete feature that we had to push was 
+									<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/issues/6">Create Personal Account Issue #6</a>, 
+									as we implemented a part of the feature, where the user could create a new account and login using their credentials, but we weren’t able to get started
+									on the part where they would be able to rent and store purchased music in their account. Additionally, we had to revise our plan for the architecture 
+									so that the UI communicated with the Logic layer and not the Data layer directly. We also took into account the feedback from Iteration 0 and 
+									modified our developer tasks and features accordingly so that they conveyed what they were capable of more clearly.</p>
+											
+								<h2><I><B>II. Are you using any specific techniques covered in the course (TDD, pair programming, scrums, etc)?</B></I></h2>
+								For Iteration 1: <br>
+								We created a mock validator for the credit card information, where we did not actually validate the payment information but just made sure it was numeric. For Iteration 2, we created validation methods (using Luhn’s algorithm, validating expiry date properly, etc.) and also threw proper exceptions so that the UI and other layers can respond to those exceptions properly.
+								<ul>
+									<li>
+										<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/blob/3865ceb0521d21b89460830d45d7b8e02c57d4d3/app/src/main/java/com/rentandgroove/logic/PaymentValidator.java#L29">Luhn's Algorithm</a>,
+										<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/blob/3865ceb0521d21b89460830d45d7b8e02c57d4d3/app/src/main/java/com/rentandgroove/logic/PaymentValidator.java#L45">CVV Validator</a>,
+										<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/blob/3865ceb0521d21b89460830d45d7b8e02c57d4d3/app/src/main/java/com/rentandgroove/logic/PaymentValidator.java#L52">Expiry date Calculator</a>
+									</li>
+									<li>
+										This is a Deliberate Prudent technical debt as we had to implement it for Iteration 1 to partially work but we fixed it in due time for the second release and dealt with it. We also knew that we would have to fix it in the future for the second release, which makes this debt Deliberate Prudent.
+									</li>
+								</ul>
+								We also created just a list of songs to view and the user wasn’t able to click on a song to play it like a music player. For Iteration 2, we added that functionality which allowed the user to play the song when it is clicked on and even change the song using that functionality.
+								<ul>
+									<li>
+										<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/blob/b2b3a68af16fcb7ed1dd5edecdc76491ea5b0aad/app/src/main/java/com/rent_and_groove/presentation/SongAdapter.java#L105">On click response,</a>
+										<a href="https://code.cs.umanitoba.ca/comp3350-winter2024/twelvegrooves-a02-12/-/blob/b2b3a68af16fcb7ed1dd5edecdc76491ea5b0aad/app/src/main/java/com/rent_and_groove/presentation/PlayerActivity.java#L89">Click handling</a>
+									</li>
+									<li>
+										This is a Inadvertent Prudent technical debt as we weren’t aware of things like creating contexts and calling methods from another view, but we learnt how to do it after our first release so we worked on it and made it work as we expected it to.		
+									</li>
+								</ul>
+								For iteration 2: <br>
+								<p>We committed a whole lot more. We made much more effort to branch effectively and had fewer issues caused by merges. 
+									We more clearly split work between members which resulted in less duplicate work initially. 
+									However, we had more issues with organization and had to change the architecture to adapt to issues with integration. 
+									Some of our issues did not become apparent early on which led to time crunches. We also had to rewrite some code in order to avoid SOLID violations 
+									and inheritance issues, which ends up being the same as duplicate work in the long run. We have solved much of our technical debt from iteration 1, 
+									but have replaced it with different technical debt instead. 	
+								</p>
 								<h2><I><B>II. What did you learn about team or large project development? What will you start doing, keep doing, or stop doing next time?</I></B></h2>
                                 <p>From this project, we have learned several key lessons</p>
                                 <ul class="features">
@@ -51,9 +94,11 @@
                                         <p>Encouraging collaboration and a positive team environment is important for maximizing productivity and creativity. Each team member brings unique perspectives to the project which can lead to innovative solutions.</p>
                                     </li>
                                 </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna. Eleifend mi in nulla posuere sollicitudin.</p>
                                 <h2><b><I>III. Can you draw any conclusions from what you’ve done?</I></b></h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In ante metus dictum at tempor. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Donec pretium vulputate sapien nec sagittis aliquam. At tellus at urna condimentum. Dignissim cras tincidunt lobortis feugiat vivamus at.</p>                            
+								<p>The project's first iteration concluded with successful completion of most intended features, though adjustments were necessary due to time constraints and evolving requirements. 
+									Throughout, effective communication, flexibility, adaptability, collaboration, and teamwork were pivotal, enabling alignment, adaptation to changes, and fostering a positive 
+									environment conducive to innovation. As the project progresses, adherence to these principles will continue guiding the team toward successful outcomes.
+								</p>
                             </section>
 					</div>
 
@@ -100,3 +145,6 @@
 
 	</body>
 </html>
+
+
+	
