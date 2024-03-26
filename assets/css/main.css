@@ -3785,10 +3785,10 @@ input, select, textarea {
 		}
 
 /* Carousel */
-
 .wrapper {
 	max-width: 1200px;
 	position: relative;
+	margin-bottom: 2%;
 }
 
 .wrapper i {
@@ -3841,4 +3841,4 @@ input, select, textarea {
 	.carousel img {
 		width: 100%;
 	}
-}
+} 
