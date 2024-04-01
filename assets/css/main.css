@@ -3788,23 +3788,22 @@ input, select, textarea {
 	box-sizing: border-box;
 	position: relative;
 	display: flex; 
+	justify-content: center;
 }
 
 .carousel {
 	display: flex;
-	overflow: hidden;
-	transition: transform 0.5s ease;
 }
 
 .features-list {
 	max-width: 600px;
 	margin: 0px;
-	margin-left: 20px;
+	margin: 0 auto;
 }
 
 .features-list video {
 	border-radius: 15px;
-	width: 340px;
+	width: 600px;
 	height: auto;
 }
 
